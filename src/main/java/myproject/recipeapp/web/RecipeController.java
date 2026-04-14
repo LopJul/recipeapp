@@ -148,7 +148,6 @@ public String save(@Valid Recipe recipe,
     existing.setTitle(recipe.getTitle());
     existing.setInstructions(recipe.getInstructions());
 
-    // clear correctly (orphanRemoval toimii)
     existing.getRecipeIngredients().clear();
 
     List<RecipeIngredient> links = new ArrayList<>();
@@ -214,7 +213,7 @@ public String save(@Valid Recipe recipe,
     @GetMapping("/favourites")
     public String getFavourites(Model model, Principal principal) {
 
-    User user = userRepository.findByUsername(principal.getName()); // testikäyttäjä
+    User user = userRepository.findByUsername(principal.getName());
 
     model.addAttribute("favourites", user.getFavouriteRecipes());
 

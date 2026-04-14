@@ -1,11 +1,8 @@
 package myproject.recipeapp.web;
-
-//import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
  
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
-//import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,7 +17,6 @@ public class WebSecurityConfig {
  
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        System.out.println("BCryptPasswordEncoder");
         return new BCryptPasswordEncoder();
     }
 
@@ -31,15 +27,14 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests(
                 authorize -> authorize
                 .requestMatchers("/login", "/login/**").permitAll()
-                .requestMatchers("/h2-console/**").permitAll() // for h2console
-                // .requestMatchers("/recipes/**").permitAll()
+                .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/css/**", "/images/**").permitAll()
                 .anyRequest().authenticated())
                 // Käyttää HTTP Basic -autentikointia oletusasetuksilla (Postman)
                         .httpBasic(Customizer.withDefaults())
                 .headers(headers ->
                     headers.frameOptions(frameOptions -> frameOptions
-                        .disable())) // for h2console
+                        .disable())) // h2console
                                    
                 .formLogin(formlogin ->
                     formlogin.loginPage("/login")

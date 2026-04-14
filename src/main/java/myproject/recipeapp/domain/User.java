@@ -46,7 +46,6 @@ public class User {
   }
 
   public User(String username, String passwordHash, Role role) {
-    //super();
     this.username = username;
     this.passwordHash = passwordHash;
     this.role = role;
@@ -91,7 +90,5 @@ public class User {
   public void setFavouriteRecipes(List<Recipe> favouriteRecipes) {
     this.favouriteRecipes = favouriteRecipes;
   }
-
-  
 
 }

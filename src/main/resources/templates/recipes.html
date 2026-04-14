@@ -3,7 +3,7 @@
   xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
   <head>
-    <title>Recipes</title>
+    <title>Reseptit</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
@@ -44,15 +44,6 @@
       <div th:each="recipe : ${recipes}" class="recipe">
         <h3 th:text="${recipe.title}"></h3>
         <p th:text="${recipe.instructions}"></p>
-
-        <!-- <div th:if="${recipe.ingredients.size() > 0}">
-          <h4>Aineosat:</h4>
-          <ul>
-            <li
-              th:each="ingredient : ${recipe.ingredients}"
-              th:text="${ingredient.name}"></li>
-          </ul>
-        </div> -->
 
         <div
           th:if="${recipe.recipeIngredients != null and !#lists.isEmpty(recipe.recipeIngredients)}">

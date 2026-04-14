@@ -22,6 +22,15 @@ CREATE TABLE ingredient (
   name VARCHAR(150) NOT NULL
 );
 
+INSERT INTO ingredient (name)
+VALUES
+('Kana'),
+('Riisi'),
+('Kerma'),
+('Sipuli'),
+('Voi'),
+('Pasta');
+
 CREATE TABLE recipe (
   id BIGSERIAL PRIMARY KEY,
   title VARCHAR(150) NOT NULL,
@@ -29,16 +38,27 @@ CREATE TABLE recipe (
   app_user_id BIGINT REFERENCES app_user(id)
 );
 
+  INSERT INTO recipe (title, instructions, app_user_id)
+VALUES
+('Kana curry', 'Paista kana ja lisää curry ja kerma.', 1),
+('Voipasta', 'Keitä pasta ja lisää voi.', 1);
+
 CREATE TABLE recipe_ingredient (
   id BIGSERIAL PRIMARY KEY,
   recipe_id BIGINT REFERENCES recipe(id),
   ingredient_id BIGINT REFERENCES ingredient(id)
 );
 
+  INSERT INTO recipe_ingredient (recipe_id, ingredient_id)
+VALUES
+(1, 1),
+(1, 4),
+(2, 2),
+(2, 5),
+(2, 6);
+
 CREATE TABLE favourites (
   app_user_id BIGINT REFERENCES app_user(id),
   recipe_id BIGINT REFERENCES recipe(id),
   PRIMARY KEY (app_user_id, recipe_id)
 );
-
-select * from recipe;
