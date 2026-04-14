@@ -14,4 +14,6 @@ COPY --from=build /home/app/target/recipeapp-0.0.1-SNAPSHOT.jar /usr/local/lib/r
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/usr/local/lib/recipeapp.jar"]
+ENTRYPOINT ["sh", "-c", "java -Dserver.port=$PORT -jar /usr/local/lib/recipeapp.jar"]
+
+# ENTRYPOINT ["java", "-jar", "/usr/local/lib/recipeapp.jar"]
